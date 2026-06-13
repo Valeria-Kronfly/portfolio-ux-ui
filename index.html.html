@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valeria Kronfly · Diseñadora UX/UI Junior</title>
+  <meta name="description" content="Diseñadora UX/UI Junior con formación en desarrollo de software y experiencia en gestión de datos. Proyectos con 100% tasa de éxito en pruebas de usabilidad." />
+  <meta property="og:title" content="Valeria Kronfly · Diseñadora UX/UI Junior" />
+  <meta property="og:description" content="Proyectos reales, métricas reales. Diseño centrado en el usuario desde Bogotá, Colombia." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FFFFFF;
+      --bg-alt: #F9FAFB;
+      --text: #1E1E1E;
+      --text-secondary: #6B7280;
+      --blue: #143561;
+      --blue-hover: #1a4a7a;
+      --blue-light: #60A5FA;
+      --green: #10B981;
+      --yellow: #FEF3C7;
+      --border: #E5E7EB;
+      --tag-bg: #F3F4F6;
+      --shadow: 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.10);
+      --radius: 12px;
+      --font: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; font-family: var(--font); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    /* ===== NAVBAR ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .nav-logo {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 15px; letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-link {
+      position: relative; padding: 6px 14px;
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      border-radius: 6px; transition: color 0.2s, background 0.2s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .nav-link:hover { color: var(--blue); background: var(--tag-bg); }
+    .nav-link::before {
+      content: '';
+      display: inline-block; width: 8px; height: 8px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 0 L4 1 L1 4 Z' fill='%23143561'/%3E%3Ccircle cx='4' cy='5' r='1.5' fill='%23143561'/%3E%3C/svg%3E") center/contain no-repeat;
+      opacity: 0; transform: translateY(-2px); transition: opacity 0.2s;
+    }
+    .nav-link:hover::before { opacity: 1; }
+    .nav-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: #065f46;
+      background: #d1fae5; padding: 5px 12px; border-radius: 20px;
+    }
+    .nav-badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 50% { box-shadow: 0 0 0 4px rgba(16,185,129,0); } }
+
+    /* Hamburger */
+    .nav-hamburger { display: none; background: none; border: none; padding: 6px; flex-direction: column; gap: 5px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 16px 24px; flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-link { padding: 10px 14px; font-size: 15px; font-weight: 500; color: var(--text-secondary); border-radius: 8px; transition: 0.2s; }
+    .mobile-link:hover { color: var(--blue); background: var(--tag-bg); }
+
+    /* ===== SECTIONS BASE ===== */
+    section { padding: 96px 40px; }
+    .section-alt { background: var(--bg-alt); }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-size: 36px; font-weight: 700; color: var(--text);
+      margin-bottom: 56px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-icon { font-size: 28px; }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 40px 80px;
+    }
+    .hero-inner { max-width: 760px; }
+    .hero-name-wrap { position: relative; display: inline-block; margin-bottom: 16px; }
+    .hero-name {
+      font-size: 56px; font-weight: 700; color: var(--text);
+      line-height: 1.1; position: relative; z-index: 1;
+    }
+    .figma-selection {
+      position: absolute; inset: -10px -16px;
+      border: 2px dashed var(--blue-light); border-radius: 4px;
+      pointer-events: none; opacity: 0;
+      animation: selectionReveal 0.6s ease 0.8s forwards;
+    }
+    .figma-selection::before, .figma-selection::after,
+    .figma-corner-bl, .figma-corner-br {
+      content: ''; position: absolute; width: 7px; height: 7px;
+      background: var(--blue-light); border-radius: 1px;
+    }
+    .figma-selection::before { top: -4px; left: -4px; }
+    .figma-selection::after { top: -4px; right: -4px; }
+    .figma-corner-bl { bottom: -4px; left: -4px; }
+    .figma-corner-br { bottom: -4px; right: -4px; }
+    .figma-label {
+      position: absolute; top: -28px; left: 0;
+      font-size: 11px; font-weight: 500; color: var(--blue-light);
+      background: rgba(96,165,250,0.1); padding: 2px 6px; border-radius: 3px;
+      white-space: nowrap;
+    }
+    @keyframes selectionReveal { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+    .hero-role { font-size: 24px; font-weight: 600; color: var(--blue); margin-bottom: 20px; }
+    .hero-sub { font-size: 17px; color: var(--text-secondary); line-height: 1.7; max-width: 620px; margin: 0 auto 36px; }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff; padding: 12px 24px;
+      border-radius: 8px; font-size: 15px; font-weight: 600; border: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--blue-hover); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--blue); padding: 12px 24px;
+      border-radius: 8px; font-size: 15px; font-weight: 600;
+      border: 1.5px solid var(--blue); transition: background 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { background: var(--tag-bg); transform: translateY(-1px); }
+    .hero-social { display: flex; gap: 16px; justify-content: center; }
+    .social-link {
+      width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); transition: 0.2s;
+    }
+    .social-link:hover { color: var(--blue); border-color: var(--blue); background: var(--tag-bg); transform: translateY(-2px); }
+    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ===== SCROLL INDICATOR ===== */
+.scroll-indicator {
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-top: 32px; width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--border); color: var(--text-secondary);
+  animation: bounce 3.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  animation-delay: 1s;
+  opacity: 0.6;
+  transition: color 0.2s, border-color 0.2s, opacity 0.2s;
+}
+.scroll-indicator:hover { color: var(--blue); border-color: var(--blue); opacity: 1; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(10px); opacity: 0.8; }
+}
+
+    /* ===== COPY EMAIL TOOLTIP ===== */
+    .email-row { display: flex; align-items: center; gap: 8px; }
+    .copy-btn {
+      position: relative; background: var(--tag-bg); border: 1px solid var(--border);
+      border-radius: 6px; padding: 3px 8px; font-size: 12px; font-weight: 500;
+      color: var(--text-secondary); display: inline-flex; align-items: center; gap: 4px;
+      transition: 0.2s; flex-shrink: 0;
+    }
+    .copy-btn:hover { background: #dbeafe; border-color: var(--blue-light); color: var(--blue); }
+    .copy-btn svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; }
+    .copy-tooltip {
+      position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%) scale(0.9); opacity: 0;
+      background: var(--text); color: #fff; font-size: 11px; font-weight: 600;
+      padding: 3px 8px; border-radius: 5px; white-space: nowrap;
+      pointer-events: none; transition: 0.15s;
+    }
+    .copy-tooltip.show { opacity: 1; transform: translateX(-50%) scale(1); }
+
+    /* ===== DETAILS/SUMMARY PROJECT EXPAND ===== */
+    .project-details { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px; }
+    .project-details summary {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--blue);
+      cursor: pointer; list-style: none; user-select: none;
+      transition: gap 0.2s;
+    }
+    .project-details summary::-webkit-details-marker { display: none; }
+    .project-details summary::after {
+      content: '↓'; transition: transform 0.2s; display: inline-block;
+    }
+    .project-details[open] summary::after { transform: rotate(180deg); }
+    .project-details summary:hover { gap: 10px; }
+    .details-content {
+      margin-top: 20px; display: grid; gap: 16px;
+    }
+    .detail-block { }
+    .detail-block-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--blue); margin-bottom: 6px;
+    }
+    .detail-block-text { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .detail-block-text strong { color: var(--text); font-weight: 600; }
+    .detail-metrics-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .detail-change {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; padding: 4px 12px;
+      background: #dbeafe; color: #1e40af; border-radius: 20px;
+    }
+
+    /* ===== INTERESES ===== */
+    .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .interest-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 24px; box-shadow: var(--shadow); transition: 0.3s;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .interest-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--blue-light); }
+    .interest-icon { font-size: 28px; }
+    .interest-title { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .interest-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ===== FOOTER SOCIAL ===== */
+    .footer-social { display: flex; gap: 12px; justify-content: center; margin-top: 16px; }
+    .footer-social-link {
+      width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); transition: 0.2s;
+    }
+    .footer-social-link:hover { color: var(--blue); border-color: var(--blue); background: var(--bg); }
+    .footer-social-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ===== RESPONSIVE EXTRAS ===== */
+    @media (max-width: 768px) {
+      .interests-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) {
+      .interests-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+
+    .about-header { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .sticky-note {
+      background: var(--yellow); padding: 5px 12px; border-radius: 4px;
+      font-size: 12px; font-weight: 600; color: #92400e;
+      transform: rotate(-1.5deg); box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+    }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .about-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; }
+    .about-text p + p { margin-top: 16px; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .stat-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-align: center;
+      box-shadow: var(--shadow); transition: 0.3s;
+    }
+    .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .stat-num { font-size: 36px; font-weight: 700; color: var(--blue); line-height: 1; }
+    .stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+    .skills-block { margin-top: 28px; }
+    .skills-category { margin-bottom: 16px; }
+    .skills-cat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 8px; }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      background: var(--tag-bg); border: 1px solid var(--border); border-radius: 20px;
+      padding: 5px 12px; font-size: 13px; font-weight: 500; color: var(--text);
+      transition: 0.2s;
+    }
+    .skill-tag:hover { transform: scale(1.05); border-color: var(--blue-light); color: var(--blue); }
+    .skill-tag.coming {
+      border-style: dashed; color: var(--text-secondary);
+      background: transparent;
+    }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid { display: flex; flex-direction: column; gap: 24px; }
+    .project-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+    .project-card.main .project-body { padding: 32px; }
+    .project-card.main .project-img { height: 300px; }
+    .project-secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .project-secondary-grid .project-card .project-img { height: 200px; }
+    .project-secondary-grid .project-card .project-body { padding: 24px; }
+    
+    .project-img {
+      background: linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 50%, #E0F2FE 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    /* ===== WIREFRAME GALLERY ===== */
+.wireframe-gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap; /* se bajan a segunda fila si no caben */
+}
+.wireframe-gallery img {
+  width: 180px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+
+.wireframe-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.wireframe-single img {
+  max-height: 200px;  /* ← CAMBIA A 200px o 220px */
+  width: auto;
+  max-width: 90%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+
+    .project-img-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: var(--blue-light); opacity: 0.6;
+    }
+    .project-img-placeholder svg { width: 40px; height: 40px; }
+    .project-img-placeholder span { font-size: 12px; font-weight: 500; }
+    .project-cat { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 10px; }
+    .project-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .project-subtitle { font-size: 14px; font-weight: 500; color: var(--blue); margin-bottom: 14px; }
+    .project-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .metric-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    }
+    .metric-green { background: #d1fae5; color: #065f46; }
+    .metric-blue { background: #dbeafe; color: #1e40af; }
+    .metric-gray { background: var(--tag-bg); color: var(--text-secondary); }
+    .project-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .tool-tag {
+      background: var(--tag-bg); border: 1px solid var(--border); border-radius: 6px;
+      padding: 3px 10px; font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    }
+    .project-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--blue);
+      background: none; border: none; padding: 0; transition: gap 0.2s;
+    }
+    .project-cta:hover { gap: 10px; }
+
+    /* ===== PROCESO ===== */
+    .process-steps {
+      display: flex; gap: 0; align-items: flex-start;
+      position: relative; overflow-x: auto; padding-bottom: 8px;
+    }
+    .process-connector {
+      position: absolute; top: 28px; left: 52px; right: 52px; height: 2px;
+      background: linear-gradient(90deg, var(--blue-light), #93c5fd); z-index: 0;
+    }
+    .process-step {
+      flex: 1; min-width: 160px; display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 12px; position: relative; z-index: 1;
+    }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: var(--blue);
+      margin-bottom: 16px; position: relative;
+      box-shadow: 0 0 0 6px var(--bg);
+    }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ===== EXPERIENCIA ===== */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 0;
+      width: 2px; background: linear-gradient(180deg, var(--blue) 0%, var(--blue-light) 100%);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -28px; top: 5px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--bg); border: 2.5px solid var(--blue);
+    }
+    .tl-date { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+    .tl-role { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .tl-company { font-size: 15px; color: var(--text-secondary); margin-bottom: 6px; }
+    .tl-achievement { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .tl-metric { color: var(--blue); font-weight: 600; }
+
+    /* ===== EDUCACIÓN ===== */
+    .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .edu-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow); transition: 0.3s;
+    }
+    .edu-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .edu-icon { font-size: 28px; margin-bottom: 12px; }
+    .edu-degree { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+    .edu-school { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+    .edu-period {
+      font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px;
+      display: inline-block;
+    }
+    .edu-period.active { background: #d1fae5; color: #065f46; }
+    .edu-period.done { background: var(--tag-bg); color: var(--text-secondary); }
+
+    /* ===== CONTACTO ===== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; }
+    .contact-icon {
+      width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--blue);
+    }
+    .contact-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .contact-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 2px; }
+    .contact-value { font-size: 15px; color: var(--text); font-weight: 500; }
+    .contact-value a:hover { color: var(--blue); }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-input {
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 10px 14px; font-size: 15px; font-family: var(--font);
+      color: var(--text); background: var(--bg); outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--blue-light); box-shadow: 0 0 0 3px rgba(96,165,250,0.15); }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+    .btn-submit {
+      background: var(--blue); color: #fff; border: none;
+      padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 600;
+      transition: 0.2s; align-self: flex-start;
+    }
+    .btn-submit:hover { background: var(--blue-hover); transform: translateY(-1px); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--tag-bg); text-align: center;
+      padding: 40px; font-size: 14px; color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .nav { padding: 0 24px; }
+      .nav-links, .nav-badge { display: none; }
+      .nav-hamburger { display: flex; }
+      section { padding: 72px 24px; }
+      .hero { padding: 100px 24px 72px; }
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .edu-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero-name { font-size: 36px; }
+      .hero-role { font-size: 20px; }
+      .hero-sub { font-size: 15px; }
+      .section-title { font-size: 28px; }
+      .project-secondary-grid { grid-template-columns: 1fr; }
+      .process-steps { flex-direction: column; align-items: stretch; }
+      .process-connector { display: none; }
+      .process-step { flex-direction: row; text-align: left; padding: 0; margin-bottom: 24px; }
+      .step-num { margin-bottom: 0; margin-right: 16px; flex-shrink: 0; }
+      .edu-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-num { font-size: 28px; }
+    }
+    @media (max-width: 480px) {
+      .nav { padding: 0 16px; }
+      section { padding: 56px 16px; }
+      .hero { padding: 90px 16px 56px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .contact-grid { gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="nav" id="navbar" role="navigation" aria-label="Navegación principal">
+  <a href="#inicio" class="nav-logo" aria-label="Inicio - Valeria Kronfly">VK</a>
+  <div class="nav-links" role="list">
+    <a href="#sobre-mi" class="nav-link" role="listitem">Sobre mí</a>
+    <a href="#proyectos" class="nav-link" role="listitem">Proyectos</a>
+    <a href="#proceso" class="nav-link" role="listitem">Proceso</a>
+    <a href="#experiencia" class="nav-link" role="listitem">Experiencia</a>
+    <a href="#contacto" class="nav-link" role="listitem">Contacto</a>
+  </div>
+  <div class="nav-badge" aria-label="Estado: disponible para oportunidades">
+    <span class="nav-badge-dot" aria-hidden="true"></span>
+    Disponible para oportunidades
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu" role="menu">
+  <a href="#sobre-mi" class="mobile-link" role="menuitem">Sobre mí</a>
+  <a href="#proyectos" class="mobile-link" role="menuitem">Proyectos</a>
+  <a href="#proceso" class="mobile-link" role="menuitem">Proceso</a>
+  <a href="#experiencia" class="mobile-link" role="menuitem">Experiencia</a>
+  <a href="#educacion" class="mobile-link" role="menuitem">Educación</a>
+  <a href="#contacto" class="mobile-link" role="menuitem">Contacto</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-name-wrap" aria-label="Valeria Kronfly">
+      <div class="figma-selection" aria-hidden="true">
+        <span class="figma-label">Frame: Hero</span>
+        <div class="figma-corner-bl"></div>
+        <div class="figma-corner-br"></div>
+      </div>
+      <h1 class="hero-name">Valeria Kronfly</h1>
+    </div>
+    <p class="hero-role">Diseñadora UX/UI Junior</p>
+    <p class="hero-sub">Reduje el tiempo de procesamiento de planillas de 10&nbsp;horas a 2&nbsp;horas mediante automatización. Estructuré flujos de datos para 400 trabajadores. Hoy diseño experiencias digitales con proyectos que alcanzan el 100&nbsp;% de éxito en pruebas de usabilidad.</p>
+    <div class="hero-ctas">
+      <a href="#proyectos" class="btn-primary">Ver proyectos <span aria-hidden="true">↓</span></a>
+      <a href="#contacto" class="btn-secondary">Contactar</a>
+      <a href="Valeria_Kronfly_CV_UX_UI.pdf" download class="btn-secondary btn-download" aria-label="Descargar CV de Valeria Kronfly en PDF">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar CV
+      </a>
+    </div>
+    <div class="hero-social" aria-label="Redes y contacto">
+      <!-- LinkedIn -->
+      <a href="https://linkedin.com/in/valeria-kronfly" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn de Valeria Kronfly">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.98 1.98 0 0 1-1.977-1.981c0-1.093.885-1.981 1.977-1.981s1.977.888 1.977 1.981a1.98 1.98 0 0 1-1.977 1.981zm1.964 13.019H3.37V9h3.931v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <!-- Email -->
+      <a href="mailto:kronflymartinezvaleria@gmail.com" class="social-link" aria-label="Enviar email a Valeria Kronfly">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.9.732-1.636 1.636-1.636h.749L12 10.845l9.615-7.024h.749A1.636 1.636 0 0 1 24 5.457z"/></svg>
+      </a>
+    </div>
+    <a href="#sobre-mi" class="scroll-indicator" aria-label="Ir al siguiente contenido">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== SOBRE MÍ ===== -->
+<section class="section-alt" id="sobre-mi">
+  <div class="container">
+    <div class="about-header">
+      <h2 class="section-title" style="margin-bottom:0">
+        <span class="section-icon" aria-hidden="true">👤</span> Sobre mí
+      </h2>
+      <div class="sticky-note" aria-label="Research notes">📌 Research notes</div>
+    </div>
+    <div class="about-grid reveal">
+      <!-- Texto -->
+      <div>
+        <div class="about-text">
+          <p>Diseñadora UX/UI con formación en desarrollo de software y experiencia en gestión de información, logística y optimización de procesos.</p>
+          <p>Reduje el tiempo de procesamiento de planillas de 10 horas a 2 horas mediante automatización en Excel. Estructuré flujos de datos para 400 trabajadores con alta rotación, manteniendo cero consultas repetitivas.</p>
+          <p>Actualmente aplico estos conocimientos al diseño de experiencias digitales: investigación de usuarios, pruebas de usabilidad y sistemas de diseño en Figma.</p>
+        </div>
+        <div class="skills-block">
+          <div class="skills-category">
+            <div class="skills-cat-label">UX Research</div>
+            <div class="skills-tags">
+              <span class="skill-tag">User Research</span>
+              <span class="skill-tag">User Personas</span>
+              <span class="skill-tag">Journey Maps</span>
+              <span class="skill-tag">Usability Testing</span>
+            </div>
+          </div>
+          <div class="skills-category">
+            <div class="skills-cat-label">UX/UI Design</div>
+            <div class="skills-tags">
+              <span class="skill-tag">Wireframing</span>
+              <span class="skill-tag">Prototipado</span>
+              <span class="skill-tag">Design Systems</span>
+              <span class="skill-tag">Accesibilidad WCAG</span>
+              <span class="skill-tag">Handoff</span>
+            </div>
+          </div>
+          <div class="skills-category">
+            <div class="skills-cat-label">Herramientas</div>
+            <div class="skills-tags">
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Maze</span>
+              <span class="skill-tag">Excel Avanzado</span>
+              <span class="skill-tag">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skills-category">
+            <div class="skills-cat-label">Próximamente</div>
+            <div class="skills-tags">
+              <span class="skill-tag coming">Galileo AI</span>
+              <span class="skill-tag coming">Uizard</span>
+              <span class="skill-tag coming">Claude AI</span>
+              <span class="skill-tag coming">Interfaces conversacionales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Stats -->
+      <div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">años con datos complejos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">tasa de éxito en tests</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">400</div>
+            <div class="stat-label">trabajadores gestionados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">80%</div>
+            <div class="stat-label">reducción en procesamiento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROYECTOS ===== -->
+<section id="proyectos">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">🎨</span> Proyectos
+    </h2>
+    <div class="projects-grid">
+      <!-- ObraCheck (principal) -->
+      <article class="project-card main reveal">
+
+        <div class="project-img" style="height:auto; max-height:500px; overflow-y:auto; padding:24px; background:linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 50%, #E0F2FE 100%);">
+  <div class="wireframe-gallery">
+    <img src="PROYECTO FINAL-wiframe_page-0001.jpg" alt="Wireframe 1: Pantalla de login de ObraCheck" loading="lazy" />
+    <img src="PROYECTO FINAL-wiframe_page-0003.jpg" alt="Wireframe 2: Dashboard principal con calendario semanal" loading="lazy" />
+    <img src="PROYECTO FINAL-wiframe_page-0004.jpg" alt="Wireframe 3: Pantalla de asistencia por semanas" loading="lazy" />
+    <img src="PROYECTO FINAL-wiframe_page-0010.jpg" alt="Wireframe 4: Detalle de boleta de pago" loading="lazy" />
+    <img src="PROYECTO FINAL-wiframe_page-0002.jpg" alt="Wireframe 5: Modal de descarga exitosa" loading="lazy" />
+  </div>
+</div>
+
+
+
+        <div class="project-body">
+          <div class="project-cat">APP DESIGN · UX/UI</div>
+          <h3 class="project-title">ObraCheck</h3>
+          <div class="project-subtitle">App para trabajadores de obra</div>
+          <div class="project-metrics">
+            <span class="metric-badge metric-green">✓ 100% Éxito</span>
+            <span class="metric-badge metric-blue">⏱ 64s Tiempo tarea</span>
+            <span class="metric-badge metric-gray">👥 6 Usuarios</span>
+            <span class="metric-badge metric-green">😊 75% Fácil</span>
+            <span class="metric-badge metric-blue">🧪 2 presencial + 4 remoto</span>
+          </div>
+          <p class="project-desc">Los obreros del Régimen de Construcción Civil en Perú no tienen una forma rápida y segura de consultar sus días trabajados y boletas de pago. Diseñé esta app desde mi experiencia gestionando 400 trabajadores en construcción y logística, combinando investigación de campo con pruebas de usabilidad reales.</p>
+          <div class="project-tools">
+            <span class="tool-tag">Figma</span>
+            <span class="tool-tag">Maze</span>
+            <span class="tool-tag">User Research</span>
+            <span class="tool-tag">Prototipado</span>
+            <span class="tool-tag">Sistema de Diseño</span>
+          </div>
+          <details class="project-details">
+            <summary>Ver detalles del proceso</summary>
+            <div class="details-content">
+              <div class="detail-block">
+                <div class="detail-block-title">Problema</div>
+                <div class="detail-block-text">Los obreros del RCC no tienen forma rápida de consultar sus días trabajados ni boletas de pago. Dependen de ir presencialmente a RRHH, generando ansiedad e incertidumbre sobre sus ingresos.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title">Hipótesis</div>
+                <div class="detail-block-text">Si pueden consultar desde el celular en cualquier momento, reducirán la ansiedad por pagos y ganarán autonomía sin depender de intermediarios.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title">Usuario principal</div>
+                <div class="detail-block-text"><strong>Luis, 34 años</strong>, obrero de construcción civil en Lima. Usa el celular como herramienta digital principal. Necesita verificar que sus pagos sean correctos y no tiene tiempo de ir a RRHH durante la jornada.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title">Decisiones de diseño clave</div>
+                <div class="detail-block-text">
+                  · Sin montos visibles en pantalla por seguridad — solo accesibles en PDF descargable<br>
+                  · Login con DNI + clave alfanumérica entregada por RRHH<br>
+                  · Recuperación de clave manual (acudir a RRHH) — reduce riesgos de seguridad<br>
+                  · Navegación por semanas, no meses — coincide con la frecuencia real de boletas RCC<br>
+                  · Números grandes para días trabajados — prioritarios para legibilidad<br>
+                  · Lenguaje directo: "Ver boletas" en lugar de "Acceder a estados de cuenta"
+                </div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title">Iteración basada en datos</div>
+                <div class="detail-block-text">Se añadió un modal de descarga exitosa con check verde ✓ porque durante las pruebas los usuarios no encontraban el PDF descargado y creían que la acción había fallado.</div>
+              </div>
+              <div class="detail-block">
+                <div class="detail-block-title">Próximos pasos</div>
+                <div class="detail-block-text">Notificaciones push cuando la boleta esté disponible · Soporte para múltiples obras en obreros con alta rotación.</div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <!-- Secundarios -->
+      <div class="project-secondary-grid">
+        <!-- Elección de Orador -->
+        <article class="project-card reveal">
+
+
+
+          <div class="project-img" style="height:200px; padding:16px; background:linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 50%, #FECACA 100%);">
+  <div class="wireframe-single">
+    <img src="Seleccion_orador_mapadecalor.png" alt="Heatmap de Maze mostrando clics erróneos en el flujo de votación" loading="lazy" />
+  </div>
+</div>
+
+
+
+
+
+
+
+          <div class="project-body">
+            <div class="project-cat">USABILITY TESTING</div>
+            <h3 class="project-title" style="font-size:20px">Elección de Orador</h3>
+            <div class="project-subtitle">Test de usabilidad e iteración</div>
+            <div class="project-metrics">
+              <span class="metric-badge metric-green">18%→0% Clics erróneos</span>
+              <span class="metric-badge metric-blue">100% Éxito</span>
+              <span class="metric-badge metric-gray">11.5s Tiempo</span>
+            </div>
+            <p class="project-desc">Test de usabilidad con heatmaps para identificar y eliminar fricciones en el flujo de selección de orador. Iteración basada en datos reales de comportamiento.</p>
+            <div class="project-tools">
+              <span class="tool-tag">Maze</span>
+              <span class="tool-tag">Figma</span>
+              <span class="tool-tag">Heatmaps</span>
+              <span class="tool-tag">Iteración</span>
+            </div>
+            <details class="project-details">
+              <summary>Ver proceso</summary>
+              <div class="details-content">
+                <div class="detail-block">
+                  <div class="detail-block-title">3 problemas críticos encontrados</div>
+                  <div class="detail-block-text">
+                    1. <strong>Falta de feedback visual</strong> al seleccionar un orador — los usuarios no sabían si su acción había registrado<br>
+                    2. <strong>Comportamiento inconsistente</strong> del botón de votación en distintos estados<br>
+                    3. <strong>Confusión en el reposicionamiento</strong> del orador elegido dentro de la lista
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-block-title">Qué cambió exactamente</div>
+                  <div class="detail-block-text">
+                    · Estados visuales claros de selección: color de acento + icono de confirmación<br>
+                    · Reposicionamiento automático al top de la lista tras selección<br>
+                    · Feedback inmediato y consistente tras cada interacción
+                  </div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-block-title">Métricas antes → después</div>
+                  <div class="detail-metrics-row">
+                    <span class="detail-change">Clics erróneos 18.3% → 0%</span>
+                    <span class="detail-change">Tiempo 33.28s → 11.5s</span>
+                    <span class="detail-change">Tasa de éxito → 100%</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <!-- Cocina Fácil -->
+        <article class="project-card reveal">
+
+
+
+
+          <div class="project-img" style="height:200px; padding:16px; background:linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 50%, #BBF7D0 100%);">
+  <div class="wireframe-single">
+    <img src="rediseño_cocina_facil.png" alt="Sistema de diseño en Figma con componentes en 4 estados" loading="lazy" />
+  </div>
+</div>
+
+
+
+
+
+          <div class="project-body">
+            <div class="project-cat">UI REDESIGN · DESIGN SYSTEM</div>
+            <h3 class="project-title" style="font-size:20px">Cocina Fácil</h3>
+            <div class="project-subtitle">Rediseño UI y sistema de diseño</div>
+            <div class="project-metrics">
+              <span class="metric-badge metric-blue">4 Estados de UI</span>
+              <span class="metric-badge metric-green">WCAG AA</span>
+              <span class="metric-badge metric-gray">100% Handoff</span>
+            </div>
+            <p class="project-desc">Sistema de diseño completo con tokens, componentes documentados en 4 estados y entrega técnica lista para desarrollo sin fricción.</p>
+            <div class="project-tools">
+              <span class="tool-tag">Figma</span>
+              <span class="tool-tag">Design Systems</span>
+              <span class="tool-tag">WCAG</span>
+              <span class="tool-tag">Handoff</span>
+            </div>
+            <details class="project-details">
+              <summary>Ver sistema de diseño</summary>
+              <div class="details-content">
+                <div class="detail-block">
+                  <div class="detail-block-title">4 estados de interacción documentados</div>
+                  <div class="detail-block-text">Cada componente está especificado en sus cuatro estados: <strong>Default</strong> (reposo), <strong>Hover</strong> (con cursor encima), <strong>Pressed</strong> (activo/seleccionado) y <strong>Disabled</strong> (no disponible). Sin ambigüedad para el equipo de desarrollo.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-block-title">Handoff para desarrollo</div>
+                  <div class="detail-block-text">Entrega en Figma con tokens de diseño nombrados, anotaciones de espaciado, y especificaciones de componentes listas para ser trasladadas a código sin reuniones de aclaración adicionales.</div>
+                </div>
+                <div class="detail-block">
+                  <div class="detail-block-title">Principios WCAG AA aplicados</div>
+                  <div class="detail-block-text">
+                    · <strong>Contraste mínimo 4.5:1</strong> en texto sobre fondo en todos los estados<br>
+                    · <strong>Jerarquía tipográfica</strong> con Inter: escala clara entre títulos, subtítulos y cuerpo<br>
+                    · Interactivos con área de toque mínima de 44×44px<br>
+                    · Estados de foco visibles para navegación por teclado
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESO ===== -->
+<section class="section-alt" id="proceso">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">🔄</span> Cómo trabajo
+    </h2>
+    <div style="position:relative" class="reveal">
+      <div class="process-steps">
+        <div class="process-connector" aria-hidden="true"></div>
+        <div class="process-step">
+          <div class="step-num" aria-label="Paso 1">1</div>
+          <div>
+            <div class="step-title">Investigar</div>
+            <div class="step-desc">Entrevistas, encuestas, análisis de datos reales.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num" aria-label="Paso 2">2</div>
+          <div>
+            <div class="step-title">Definir</div>
+            <div class="step-desc">User personas, journey maps, arquitectura de información.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num" aria-label="Paso 3">3</div>
+          <div>
+            <div class="step-title">Diseñar</div>
+            <div class="step-desc">Wireframes, prototipos y sistemas de diseño en Figma.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num" aria-label="Paso 4">4</div>
+          <div>
+            <div class="step-title">Validar</div>
+            <div class="step-desc">Pruebas con usuarios reales. Iteración basada en métricas.</div>
+          </div>
+        </div>
+        <div class="process-step">
+          <div class="step-num" aria-label="Paso 5">5</div>
+          <div>
+            <div class="step-title">Entregar</div>
+            <div class="step-desc">Handoff para desarrollo y documentación de componentes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERESES ===== -->
+<section id="intereses">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">🎯</span> Me interesa especialmente
+    </h2>
+    <div class="interests-grid reveal">
+      <div class="interest-card">
+        <div class="interest-icon">🏗️</div>
+        <div class="interest-title">Diseño para productos B2B</div>
+        <div class="interest-desc">Construcción, RRHH y logística. Entiendo el contexto operativo porque viví en él. Los flujos complejos y los usuarios no técnicos son mi especialidad.</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">📊</div>
+        <div class="interest-title">UX Research basado en métricas</div>
+        <div class="interest-desc">No diseño por intuición. Cada decisión se sustenta en datos reales de usabilidad, heatmaps y pruebas con usuarios. El diseño iterativo como método, no como excusa.</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🤖</div>
+        <div class="interest-title">IA en procesos de diseño</div>
+        <div class="interest-desc">Exploro cómo herramientas como Galileo AI, Uizard y las interfaces conversacionales pueden acelerar el proceso creativo sin reemplazar el pensamiento de diseño.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCIA ===== -->
+<section id="experiencia">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">📋</span> Experiencia
+    </h2>
+    <div class="timeline reveal" aria-label="Línea de tiempo profesional">
+      <div class="timeline-item">
+        <div class="tl-date">Ene 2025 – May 2025</div>
+        <div class="tl-role">Asistente de Almacén y Logística</div>
+        <div class="tl-company">Consorcio Río Huatanay</div>
+        <div class="tl-achievement">Logré una <span class="tl-metric">trazabilidad de inventarios del 98%</span> mediante sistemas de control organizados y registro detallado de materiales en obra.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Mar 2024 – Jun 2024 · May 2022 – Dic 2023</div>
+        <div class="tl-role">Analista Administrativa / Gestión de Personal</div>
+        <div class="tl-company">INGECOL Sucursal Perú</div>
+        <div class="tl-achievement">Gestioné información de <span class="tl-metric">400 trabajadores con alta rotación</span>. Automaticé la elaboración de planillas reduciendo el tiempo de <span class="tl-metric">10 horas a 2 horas</span> y mantuve <span class="tl-metric">cero consultas repetitivas</span> mediante flujos de datos estructurados.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-date">Sep 2021 – Mar 2022</div>
+        <div class="tl-role">Asistente de Almacén</div>
+        <div class="tl-company">Consorcio Ajaningecol</div>
+        <div class="tl-achievement">Implementé un sistema de organización de stock que logró una <span class="tl-metric">mejora del 20%</span> en la localización de materiales y redujo tiempos de búsqueda.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCACIÓN ===== -->
+<section class="section-alt" id="educacion">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">🎓</span> Educación
+    </h2>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-icon">💻</div>
+        <div class="edu-degree">Técnico Profesional en Desarrollo de Software</div>
+        <div class="edu-school">Politécnico Internacional Colombia</div>
+        <span class="edu-period done">2017 – 2020</span>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📊</div>
+        <div class="edu-degree">Técnico en Contabilización de Operaciones</div>
+        <div class="edu-school">SENA Colombia</div>
+        <span class="edu-period done">2014 – 2016</span>
+      </div>
+      <div class="edu-card" style="border-color: var(--green); border-width: 2px;">
+        <div class="edu-icon">✏️</div>
+        <div class="edu-degree">Certificado en Diseño UX/UI</div>
+        <div class="edu-school">TripleTen Virtual</div>
+        <span class="edu-period active">2025 – 2026 · EN CURSO</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section id="contacto">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="section-icon" aria-hidden="true">✉️</span> ¿Trabajamos juntos?
+    </h2>
+    <div class="contact-grid reveal">
+      <!-- Info -->
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.9.732-1.636 1.636-1.636h.749L12 10.845l9.615-7.024h.749A1.636 1.636 0 0 1 24 5.457z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="email-row">
+              <div class="contact-value"><a href="mailto:kronflymartinezvaleria@gmail.com">kronflymartinezvaleria@gmail.com</a></div>
+              <button class="copy-btn" onclick="copyEmail(this)" aria-label="Copiar email al portapapeles">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copiar
+                <span class="copy-tooltip" role="status" aria-live="polite">Copiado ✓</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Teléfono</div>
+            <div class="contact-value"><a href="tel:+573228585224">+57 322 858 5224</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.98 1.98 0 0 1-1.977-1.981c0-1.093.885-1.981 1.977-1.981s1.977.888 1.977 1.981a1.98 1.98 0 0 1-1.977 1.981zm1.964 13.019H3.37V9h3.931v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value"><a href="https://linkedin.com/in/valeria-kronfly" target="_blank" rel="noopener">linkedin.com/in/valeria-kronfly</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">Ubicación</div>
+            <div class="contact-value">Bogotá, Colombia · Remoto LATAM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div>
+        <form class="contact-form" onsubmit="handleContactForm(event)" novalidate>
+          <div class="form-field">
+            <label class="form-label" for="contact-name">Nombre</label>
+            <input class="form-input" id="contact-name" type="text" placeholder="Tu nombre" required autocomplete="name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-email">Email</label>
+            <input class="form-input" id="contact-email" type="email" placeholder="tu@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="contact-msg">Mensaje</label>
+            <textarea class="form-input" id="contact-msg" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar email →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2026 Valeria Kronfly · Diseñadora UX/UI Junior · Bogotá, Colombia</p>
+</footer>
+
+<script>
+  // ===== COPY EMAIL =====
+  function copyEmail(btn) {
+    navigator.clipboard.writeText('kronflymartinezvaleria@gmail.com').then(() => {
+      const tooltip = btn.querySelector('.copy-tooltip');
+      tooltip.classList.add('show');
+      setTimeout(() => tooltip.classList.remove('show'), 2000);
+    });
+  }
+
+  // ===== NAVBAR SCROLL =====
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ===== HAMBURGER =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    hamburger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ===== SCROLL REVEAL =====
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ===== CONTACT FORM =====
+  function handleContactForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const msg = document.getElementById('contact-msg').value.trim();
+    if (!name || !email || !msg) return;
+    const mailto = `mailto:kronflymartinezvaleria@gmail.com?subject=Contacto desde portafolio - ${encodeURIComponent(name)}&body=${encodeURIComponent(`Hola Valeria,\n\nMi nombre es ${name} (${email}).\n\n${msg}`)}`;
+    window.location.href = mailto;
+  }
+
+  // ===== SMOOTH SCROLL =====
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ===== KEYBOARD NAV =====
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.focus();
+    }
+  });
+</script>
+</body>
+</html>
